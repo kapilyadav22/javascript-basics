@@ -2,17 +2,20 @@
 let user = {
     name: "kapil yadav",
     age: 24,
-    childObject: {
-        newName: "Programming Hub",
-        getDetails() {
-            console.log(this.newName, "and", this.name);
+    getDetails: () => {
+            console.log(this.name);
         }
-    },
-
 };
-
-user.childObject.getDetails();
+ 
+user.getDetails();
 
 /*
-this is pointing the child object (Immediate parent), but not the parent object
- */
+will print nothing, this is not pointing to user object, 
+this is pointing to global object/window object.
+
+Arrow function works in such a way that, the value of 
+this comes from its parent function.
+
+See Example - 6
+*/
+
