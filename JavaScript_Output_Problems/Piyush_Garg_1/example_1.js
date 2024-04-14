@@ -32,7 +32,7 @@ as value with function name as key.
 Code execution phase - executes the code line by line and assign the values of variable, 
 and for function call, it again creates a separate execution context. 
 
-Topic Covered : Hoisting, GEC, 
+Topic Covered : Hoisting, GEC
 */
 
 

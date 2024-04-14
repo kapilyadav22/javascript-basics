@@ -16,8 +16,8 @@ function addTwoNumbers(num1, num2){
 }
 
 //arguments -> values passed in function call
-// addTwoNumbers(4,5);
-// addTwoNumbers(4,'kapil');
+addTwoNumbers(4,5);
+addTwoNumbers(4,'kapil');
 
 const result = addTwoNumbers(4,5);
 console.log("Result is :", result); //undefined
