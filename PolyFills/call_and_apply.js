@@ -17,8 +17,10 @@ Function.prototype.myCall = function(context={}, ...args){
         throw new Error(this + "It's not callable");
     }
 
-    context.fn = this;
-    context.fn(...args);
+    context.fn = this;             
+    const result = context.fn(...args);
+    delete context.fn;             
+    return result;  
 };
 
 Function.prototype.myApply = function(context={}, args = []){
@@ -30,8 +32,10 @@ Function.prototype.myApply = function(context={}, args = []){
         throw new TypeError("CreateListFromArrayLike called on non-object");
     }
 
-    context.fn = this;
-    context.fn(...args);
+    context.fn = this;             
+    const result = context.fn(...args);
+    delete context.fn;             
+    return result;  
 };
 
 

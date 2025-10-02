@@ -9,14 +9,15 @@ var trigger_cnt = 0;
 
 const myDebounce = (cb, d) => {
     let timer;
-    
     return function(...args) {
-        if(timer) clearTimeout(timer);
-        timer = setTimeout(()=>{
-            cb(...args);
-        },d);  
-    }
-}
+        const context = this;     
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+            cb.apply(context, args);
+        }, d);
+    };
+};
+
 
 const debounceCount = myDebounce(()=>{
     cnt.innerHTML = ++trigger_cnt;
@@ -28,3 +29,20 @@ btn.addEventListener("click",()=>{
     debounceCount();
 });
 
+
+
+
+const searchBox = {
+    query: "",
+    setQuery(q) {
+        this.query = q;
+        console.log("Search query updated to:", this.query);
+    }
+};
+
+const inputHandler = myDebounce(searchBox.setQuery, 1000);
+
+// Simulating typing "car"
+inputHandler.call(searchBox, "c");
+inputHandler.call(searchBox, "ca");
+inputHandler.call(searchBox, "car");

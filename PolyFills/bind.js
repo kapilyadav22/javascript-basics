@@ -20,17 +20,20 @@ console.log(newFunc2);
 console.log(newFunc2("$",50000));
 
 
-
-Function.prototype.myBind = function(context={}, ...args){
-    if(typeof this !== 'function'){
-        throw new Error(this + "It's not callable");
+Function.prototype.myBind = function(context = {}, ...args) {
+    if (typeof this !== 'function') {
+        throw new Error(this + " is not callable");
     }
 
-    context.fn = this;
-    return function(...newArgs){
-        return context.fn(...args,...newArgs);
+    const self = this; 
+    return function(...newArgs) {
+        context.fn = self;                    
+        const result = context.fn(...args, ...newArgs); 
+        delete context.fn;                       
+        return result;
     };
 };
+
 
 
 const newFunc3 = purchaseCar.myBind(car2);

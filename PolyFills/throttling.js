@@ -6,18 +6,20 @@ const cnt = document.getElementById("triggered");
 var pressedCnt = 0;
 var trigger_cnt = 0;
 
-const myThrottle = (cb,d) => {
-    let last=0;
-    
-    return function(...args) {
-        let now = new Date().getTime();
-        
-        if(now-last < d) return;
-        last = now;
+const myThrottle = (cb, d) => {
+    let last = 0;
 
-        return cb(...args);
+    return function (...args) {
+        const context = this;              
+        let now = Date.now();
+
+        if (now - last < d) return;
+
+        last = now;
+        return cb.apply(context, args);     
     };
 };
+
 
 const throttleCount = myThrottle(()=>{
     cnt.innerHTML = ++trigger_cnt;
