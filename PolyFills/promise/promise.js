@@ -1,32 +1,45 @@
 // promise polyfill for older browsers
 
-
 function MyPromise(executor) {
     let onResolve, onReject;
     let isResolved = false, isRejected = false;
+    let isCalled = false;
     let value, reason;
 
     const resolve = (val) => {
         isResolved = true;
         value = val;
-        if (typeof onResolve === "function") onResolve(value);
+       
+        if (typeof onResolve === "function" && !isCalled){ 
+            onResolve(value);
+            isCalled = true;
+        }
     };
 
     const reject = (err) => {
         isRejected = true;
         reason = err;
-        if (typeof onReject === "function") onReject(reason);
+       if (typeof onReject === "function"  && !isCalled){
+            onReject(reason);
+            isCalled = true;
+        }
     };
 
     this.then = function(callback) {
         onResolve = callback;
-        if (isResolved) onResolve(value);
+        if (isResolved && !isCalled){
+            isCalled = true;
+            onResolve(value);
+        } 
         return this; // for chaining
     };
 
     this.catch = function(callback) {
         onReject = callback;
-        if (isRejected) onReject(reason);
+        if (isRejected && !isCalled){ 
+            onReject(reason);
+            isCalled = true;
+        }
         return this;
     };
 
@@ -40,9 +53,9 @@ function MyPromise(executor) {
 
 
 const promise = new MyPromise((resolve, reject) => {
-    setTimeout(() => {
+     setTimeout(() => {
         resolve("Success!");
-        // reject("Error!");
+        reject("Error!");
     }, 1000);
 });
 

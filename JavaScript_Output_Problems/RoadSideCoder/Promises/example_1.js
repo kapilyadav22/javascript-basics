@@ -13,8 +13,9 @@ prom.then((msg)=>{
     console.log(msg);
 }).catch((err)=>{
     console.log(err);
-    
 })
+.finally(()=>console.log("Operation completed"));
+
 console.log("End");
 
 const promAcc = Promise.resolve("Promise is resolved");
