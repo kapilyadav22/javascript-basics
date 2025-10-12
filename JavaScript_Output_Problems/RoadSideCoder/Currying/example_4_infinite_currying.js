@@ -6,5 +6,6 @@ function add(a){
         return a;
     };
 }
+
 let sum = add(2)(4)(5)(6)();
 console.log(sum);

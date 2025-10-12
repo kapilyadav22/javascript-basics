@@ -1,11 +1,17 @@
 function once(func, context) {
-    let ran;
+    let called = false;
+    let result;
     return function(...args) {
-        if (func) {
-            ran = func.apply(context || this, args);
-            func = null; 
+        if (!called) {
+            try{
+                result = func.apply(context || this, args);
+                called = true; //marked called only on success
+            }
+            catch(err){
+                    throw err;
+            }
         }
-        return ran;
+        return result;
     };
 }
 

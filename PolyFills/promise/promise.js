@@ -31,7 +31,7 @@ function MyPromise(executor) {
             isCalled = true;
             onResolve(value);
         } 
-        return this; // for chaining
+        return this; 
     };
 
     this.catch = function(callback) {
@@ -64,3 +64,5 @@ promise
     .then((res) => console.log("Resolved:", res))
     .catch((err) => console.log("Rejected:", err));
 
+
+//Note: The polyfill does not support chaining of then() and catch() methods.
