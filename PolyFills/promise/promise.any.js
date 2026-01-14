@@ -38,3 +38,14 @@ Promise.myAny([
 .catch(console.error);
 
 
+
+//error case
+// [AggregateError: All promises were rejected] {
+//   [errors]: [ 'p1', 'p2' ]
+// }
+
+
+// Even after resolve() is called:
+// JavaScript does NOT stop the forEach
+// All other .then() callbacks still run
+//so we need to track rejections carefully

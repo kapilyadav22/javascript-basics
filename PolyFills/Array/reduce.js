@@ -13,8 +13,13 @@ Array.prototype.myReduce = function(cb,initialValue) {
 There are multiple issues with this method,
 When initialValue is falsy but valid (like 0, '', or false), it will give wrong output in some cases like:
 const arr = [10, 20, 30];
-const res2 = arr.myReduce((a, b) => a || b, 0);
-console.log(res2); // ❌ expected 10 but gets 20
+const res2 = arr.myReduce((a, b) => a && b, 0);
+console.log(res2); // Expected output: 0, Actual output: 30
+
+The && (logical AND) operator works like this:
+It evaluates operands from left to right.
+It returns the first falsy value it finds.
+If all values are truthy, it returns the last value.
 */
 
 

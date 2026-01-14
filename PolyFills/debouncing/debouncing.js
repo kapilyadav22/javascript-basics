@@ -46,3 +46,35 @@ const inputHandler = myDebounce(searchBox.setQuery, 1000);
 inputHandler.call(searchBox, "c");
 inputHandler.call(searchBox, "ca");
 inputHandler.call(searchBox, "car");
+
+
+//Debounc example with context
+
+const user = {
+    name: "Kapil",
+    greet() {
+        console.log(`Hello, ${this.name}!`);
+    }
+};
+
+const debouncedGreet = myDebounce(user.greet, 1500);
+
+// Simulating multiple calls to greet
+debouncedGreet.call(user);
+debouncedGreet.call(user);
+debouncedGreet.call(user);
+
+
+//or
+function say(age) {
+    console.log("Hello",this.name + ", your age is " + age);
+  }
+
+const obj = {
+  name: "Kapil",
+};
+
+console.log(new Date().toLocaleTimeString());
+obj.debounced = myDebounce(say, 1500);
+obj.debounced(28); 
+

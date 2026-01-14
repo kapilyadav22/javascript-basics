@@ -9,7 +9,11 @@ Promise.myAll = function (promises) {
     if (total === 0) return resolve([]);
 
     promises.forEach((p, index) => {
+      //promise.resolve handles non-promise values, if p is not a promise it will be converted to one
+      //this ensures that we can handle both promises and non-promises uniformly
+      //if p is already a promise, it will be returned as is
       Promise.resolve(p)
+
         .then(value => {
           results[index] = value;
           completed++;

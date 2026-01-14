@@ -6,7 +6,7 @@ const cnt = document.getElementById("triggered");
 var pressedCnt = 0;
 var trigger_cnt = 0;
 
-function throttle(func, delay) {
+function myThrottle(func, delay) {
   let last = 0;
   let result;
   return function (...args) {
@@ -22,7 +22,7 @@ function throttle(func, delay) {
 
 
 const throttleCount = myThrottle(()=>{
-    cnt.innerHTML = ++trigger_cnt;
+    cnt.innerHTML = ++trigglcer_cnt;
 },800);
 
 //if we want to do using Lodash, copy the lodash cdn link in index.html

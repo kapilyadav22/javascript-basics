@@ -69,3 +69,12 @@ const getData =  async ()=> {
 }
 
 */
+
+
+/*
+in promise.all, promise.allSettled => we need completed, and result
+in promise.any => we need errors, rejectedCount => if all promises are rejected, then
+ reject with AggregateError: new AggregateError(errors, "All promises were rejected"), errors is an array of all rejection reasons
+in promise.race => we don't need to track anything, just resolve/reject with first settled promise
+
+*/
